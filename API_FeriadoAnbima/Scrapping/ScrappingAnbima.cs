@@ -31,11 +31,11 @@ namespace API_FeriadoAnbima.Scrapping
             {
                 List<FeriadoDto> feriados = new List<FeriadoDto>();
 
-                LogDeRaspagemRequisicao log = await _logDeRaspagemRequisicaoRepository.FindByIdLogRaspagemRequisicao(_logId.id);
+                LogDeRaspagemRequisicao log = await _logDeRaspagemRequisicaoRepository.FindByIdLogRaspagemRequisicao(_logId.ID);
                 Console.WriteLine(log);
 
                 Status statusXpath = new Status("Criação do XPATH", "Scrapping", log);
-                _statusRepository.CreateStatus(statusXpath);
+                await _statusRepository.CreateStatus(statusXpath);
 
                 var html = @$"https://www.anbima.com.br/feriados/fer_nacionais/{ano}.asp";
                 HtmlWeb web = new HtmlWeb
@@ -45,21 +45,21 @@ namespace API_FeriadoAnbima.Scrapping
                 };
 
                 Status statusCarregamento = new Status($"Fazendo o carregamento da pagina Anbima {html}", "Scrapping", log); //Criação do objeto status
-                _statusRepository.CreateStatus(statusCarregamento); //Salvando o objeto status
+                await _statusRepository.CreateStatus(statusCarregamento); //Salvando o objeto status
 
                 HtmlDocument htmlDoc = web.Load(html);
                 var table = htmlDoc.DocumentNode.SelectNodes("//table")[2];
                 var dados = table.SelectNodes("//tr/td[@class='tabela'][@style='padding-left:10px;']");
 
                 Status statusScrapping = new Status($"Fazendo a raspagem da tela", "Scrapping", log); //Criação do objeto status
-                _statusRepository.CreateStatus(statusScrapping); //Salvando o objeto status
+                await _statusRepository.CreateStatus(statusScrapping); //Salvando o objeto status
 
                 int contador = 1;
 
                 FeriadoDto feriado = new FeriadoDto();
 
                 Status statusLoopFeriado = new Status($"Criação da lista FeriadoDto, dos valores resgatado", "Scrapping", log); //Criação do objeto status
-                _statusRepository.CreateStatus(statusLoopFeriado); //Salvando o objeto status
+                await _statusRepository.CreateStatus(statusLoopFeriado); //Salvando o objeto status
 
                 foreach (var nodeLoop in dados)
                 {
@@ -76,17 +76,17 @@ namespace API_FeriadoAnbima.Scrapping
                     if (contador == 3)
                     {
                         feriado.nome = nodeLoop.InnerText;
-                        convertString(nodeLoop.InnerHtml);
+                        //convertString(nodeLoop.InnerHtml);
                         feriado.ano = Int32.Parse(ano);
                         feriados.Add(feriado);
-                        _feriadoRepository.CreateFeriado(feriado, log);
+                        await _feriadoRepository.CreateFeriado(feriado, log);
                         contador = 0;
                     }
                     contador++;
                 }
 
                 Status statusRetornoScrapping = new Status($"Criação com sucesso da lista FeriadoDto dos valores resgatado e retorno da função", "Scrapping", log); //Criação do objeto status
-                _statusRepository.CreateStatus(statusRetornoScrapping); //Salvando o objeto status
+                await _statusRepository.CreateStatus(statusRetornoScrapping); //Salvando o objeto status
 
                 return feriados;
             }
@@ -113,7 +113,7 @@ namespace API_FeriadoAnbima.Scrapping
 
             // Convert the new byte[] into a char[] and then into a string.
             char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
-            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0); 
             string asciiString = new string(asciiChars);
 
             // Display the strings created before and after the conversion.

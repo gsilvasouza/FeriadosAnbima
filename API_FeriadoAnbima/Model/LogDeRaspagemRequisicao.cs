@@ -15,7 +15,7 @@ namespace API_FeriadoAnbima.Model
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int ID { get; set; }
         [Column("Data")]
         [Required]
         public DateTime data { get; set; }
@@ -57,7 +57,7 @@ namespace API_FeriadoAnbima.Model
 
         public override string ToString()
         {
-            return $"ID: {this.id }; data: {this.data}; isSucess: {this.isSucess}; enderecoHttps: {this.enderecoHttps}; anoSolicitado: {this.anoSolicitado}";
+            return $"ID: {this.ID }; data: {this.data}; isSucess: {this.isSucess}; enderecoHttps: {this.enderecoHttps}; anoSolicitado: {this.anoSolicitado}";
         }
 
         public ValidationResult EhValido()

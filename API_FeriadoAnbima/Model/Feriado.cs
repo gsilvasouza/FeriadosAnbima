@@ -12,7 +12,7 @@ namespace API_FeriadoAnbima.Model
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int ID { get; set; }
         [Column("Nome")]
         [Required]
         public string nome { get; set; }
@@ -65,7 +65,6 @@ namespace API_FeriadoAnbima.Model
             RuleFor(f => f.diaDaSemana)
                 .NotEmpty().WithMessage("Por favor, certifique-se de ter inserido o dia da semana");
             RuleFor(f => f.data)
-                .Must(VerifyDate).WithMessage("Por favor, certifique-se de ter inserido a data")
                 .NotEmpty().WithMessage("Por favor, certifique-se de ter inserido a data");
             RuleFor(f => f.LogDeRaspagemRequisicao)
                 .NotEmpty().WithMessage("Por favor, certifique-se de ter inserido o id do log de requisição");
@@ -74,11 +73,6 @@ namespace API_FeriadoAnbima.Model
         public static bool VerifyYear(int ano)
         {
             return ano > 2001 && ano < 2078; 
-        }
-
-        public static bool VerifyDate(DateTime time)
-        {
-            return time.Hour == DateTime.UtcNow.Hour;
         }
     }
 

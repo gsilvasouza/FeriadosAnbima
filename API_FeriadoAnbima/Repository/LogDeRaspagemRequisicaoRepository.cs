@@ -19,12 +19,16 @@ namespace API_FeriadoAnbima.Repository
 
         public async Task<LogDeRaspagemRequisicao> CreateLogRaspagemRequisicao(LogDeRaspagemRequisicao logRaspagemRequisicao)
         {
+            if (!logRaspagemRequisicao.EhValido().IsValid)
+                throw new Exception("Erro ao criar o objeto logDeRaspagemRequisicao no banco de dados"); ;
             _db.logs.Add(logRaspagemRequisicao);
             await _db.SaveChangesAsync();
             return logRaspagemRequisicao;
         }
-        public async Task<LogDeRaspagemRequisicao> UpdateLogRaspagemRequisicao(LogDeRaspagemRequisicao logRaspagemRequisicao)
+        public async Task<LogDeRaspagemRequisicao> UpdateLogRaspagemRequisicaoAsync(LogDeRaspagemRequisicao logRaspagemRequisicao)
         {
+            if (!logRaspagemRequisicao.EhValido().IsValid)
+                throw new Exception("Erro ao criar o objeto logDeRaspagemRequisicao no banco de dados"); ;
             _db.logs.Update(logRaspagemRequisicao);
             await _db.SaveChangesAsync();
             return logRaspagemRequisicao;

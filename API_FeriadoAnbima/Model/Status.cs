@@ -14,7 +14,7 @@ namespace API_FeriadoAnbima.Model
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int ID { get; set; }
         [Column("Descrição")]
         [Required]
         public string Descricao { get; set; }

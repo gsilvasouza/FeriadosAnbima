@@ -32,14 +32,14 @@ namespace TesteIntegracao_API
         }
 
         [Fact(DisplayName = "Busca de feriados ano")]
-        [Trait("Categoria", "Integração API - Ano")]
+        [Trait("Categoria", "Integração API - Ano, Falha ano invalido")]
         public async Task BuscaAno_RetornoInvalido()
         {
             string ano = "1999";
 
             var getResponse = await _testsFixture.Client.GetAsync($"/api/FeriadosAnbima/{ano}");
 
-            getResponse.EnsureSuccessStatusCode().;
+            getResponse.StatusCode.Equals(400);
         }
     }
 }

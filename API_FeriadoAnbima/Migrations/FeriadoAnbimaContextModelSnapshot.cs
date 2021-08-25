@@ -43,10 +43,6 @@ namespace API_FeriadoAnbima.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("DiaDaSemana");
 
-                    b.Property<int>("logId")
-                        .HasColumnType("int")
-                        .HasColumnName("LogId");
-
                     b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -114,10 +110,6 @@ namespace API_FeriadoAnbima.Migrations
 
                     b.Property<int?>("LogDeRaspagemRequisicaoid")
                         .HasColumnType("int");
-
-                    b.Property<int>("LogId")
-                        .HasColumnType("int")
-                        .HasColumnName("LogId");
 
                     b.HasKey("Id");
 

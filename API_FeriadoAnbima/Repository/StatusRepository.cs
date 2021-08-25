@@ -17,19 +17,21 @@ namespace API_FeriadoAnbima.Repository
             this._db = db;
         }
 
-        public void CreateStatus(Status status)
+        public async Task<Status> CreateStatus(Status status)
         {
             if (!status.EhValido().IsValid)
-                return;
+                throw new Exception("Erro ao criar o objeto status no banco de dados");
             _db.status.Add(status);
-            _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
+            return status;
         }
-        public void UpdateStatus(Status status)
+        public async Task<Status> UpdateStatus(Status status)
         {
             if (!status.EhValido().IsValid)
-                return;
+                throw new Exception("Erro ao criar o objeto status no banco de dados");
             _db.status.Update(status);
-            _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
+            return status;
         }
         public async Task<IList<Status>> FindAllStatus()
         {

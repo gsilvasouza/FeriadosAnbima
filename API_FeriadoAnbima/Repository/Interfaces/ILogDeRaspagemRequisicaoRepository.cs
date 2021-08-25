@@ -9,7 +9,7 @@ namespace API_FeriadoAnbima.Repository
     public interface ILogDeRaspagemRequisicaoRepository
     {
         Task<LogDeRaspagemRequisicao> CreateLogRaspagemRequisicao(LogDeRaspagemRequisicao logRaspagemRequisicao);
-        Task<LogDeRaspagemRequisicao> UpdateLogRaspagemRequisicao(LogDeRaspagemRequisicao logRaspagemRequisicao);
+        Task<LogDeRaspagemRequisicao> UpdateLogRaspagemRequisicaoAsync(LogDeRaspagemRequisicao logRaspagemRequisicao);
         Task<IList<LogDeRaspagemRequisicao>> FindAllLogRaspagemRequisicao();
         Task<LogDeRaspagemRequisicao> FindByIdLogRaspagemRequisicao(int id);
         

@@ -20,14 +20,15 @@ namespace API_FeriadoAnbima.Repository
             this._mapper = mapper;
         }
 
-        public async void CreateFeriado(FeriadoDto feriadodto, LogDeRaspagemRequisicao log)
+        public async Task<Feriado> CreateFeriado(FeriadoDto feriadodto, LogDeRaspagemRequisicao log)
         {
             Feriado feriado = _mapper.Map<FeriadoDto, Feriado>(feriadodto);
             feriado.LogDeRaspagemRequisicao = log;
             if (!feriado.EhValido().IsValid)
-                return;
+                throw new Exception("Erro ao criar o objeto Feriado no banco de dados");
             _db.feriado.Add(feriado);
             await _db.SaveChangesAsync();
-        } 
+            return feriado;
+        }
     }
 }
