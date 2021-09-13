@@ -16,6 +16,8 @@ namespace API_FeriadoAnbima.AutoMapper
             {
                 config.CreateMap<FeriadoDto, Feriado>();
                 config.CreateMap<Feriado, FeriadoDto>();
+                config.CreateMap<Usuario, UsuarioDto>();
+                config.CreateMap<UsuarioDto, Usuario>();
             });
 
             return mappingConfig;
