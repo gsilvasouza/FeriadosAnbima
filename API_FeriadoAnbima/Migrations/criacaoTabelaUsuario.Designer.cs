@@ -4,14 +4,16 @@ using API_FeriadoAnbima.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API_FeriadoAnbima.Migrations
 {
     [DbContext(typeof(FeriadoAnbimaContext))]
-    partial class FeriadoAnbimaContextModelSnapshot : ModelSnapshot
+    [Migration("20210913195429_criacaoTabelaUsuario")]
+    partial class criacaoTabelaUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +54,7 @@ namespace API_FeriadoAnbima.Migrations
 
                     b.HasIndex("LogDeRaspagemRequisicaoID");
 
-                    b.ToTable("TB_Feriado");
+                    b.ToTable("TB_FERIADO");
                 });
 
             modelBuilder.Entity("API_FeriadoAnbima.Model.LogDeRaspagemRequisicao", b =>
@@ -143,7 +145,7 @@ namespace API_FeriadoAnbima.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("TB_Usuario");
+                    b.ToTable("usuario");
                 });
 
             modelBuilder.Entity("API_FeriadoAnbima.Model.Feriado", b =>
