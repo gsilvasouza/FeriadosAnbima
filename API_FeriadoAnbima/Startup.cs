@@ -70,8 +70,6 @@ namespace API_FeriadoAnbima
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            
-            
             //app.UseCors("Cors");
             app.UseAuthentication();
             app.UseAuthorization();
