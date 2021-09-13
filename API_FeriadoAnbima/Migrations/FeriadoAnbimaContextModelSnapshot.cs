@@ -21,13 +21,13 @@ namespace API_FeriadoAnbima.Migrations
 
             modelBuilder.Entity("API_FeriadoAnbima.Model.Feriado", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("LogDeRaspagemRequisicaoid")
+                    b.Property<int?>("LogDeRaspagemRequisicaoID")
                         .HasColumnType("int");
 
                     b.Property<int>("ano")
@@ -48,16 +48,16 @@ namespace API_FeriadoAnbima.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Nome");
 
-                    b.HasKey("id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("LogDeRaspagemRequisicaoid");
+                    b.HasIndex("LogDeRaspagemRequisicaoID");
 
                     b.ToTable("feriado");
                 });
 
             modelBuilder.Entity("API_FeriadoAnbima.Model.LogDeRaspagemRequisicao", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID")
@@ -85,14 +85,14 @@ namespace API_FeriadoAnbima.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("IsSucess");
 
-                    b.HasKey("id");
+                    b.HasKey("ID");
 
                     b.ToTable("TB_LogDeRaspagemRequisicao");
                 });
 
             modelBuilder.Entity("API_FeriadoAnbima.Model.Status", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID")
@@ -108,12 +108,12 @@ namespace API_FeriadoAnbima.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Log");
 
-                    b.Property<int?>("LogDeRaspagemRequisicaoid")
+                    b.Property<int?>("LogDeRaspagemRequisicaoID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("LogDeRaspagemRequisicaoid");
+                    b.HasIndex("LogDeRaspagemRequisicaoID");
 
                     b.ToTable("status");
                 });
@@ -122,7 +122,7 @@ namespace API_FeriadoAnbima.Migrations
                 {
                     b.HasOne("API_FeriadoAnbima.Model.LogDeRaspagemRequisicao", "LogDeRaspagemRequisicao")
                         .WithMany("feriados")
-                        .HasForeignKey("LogDeRaspagemRequisicaoid");
+                        .HasForeignKey("LogDeRaspagemRequisicaoID");
 
                     b.Navigation("LogDeRaspagemRequisicao");
                 });
@@ -131,7 +131,7 @@ namespace API_FeriadoAnbima.Migrations
                 {
                     b.HasOne("API_FeriadoAnbima.Model.LogDeRaspagemRequisicao", "LogDeRaspagemRequisicao")
                         .WithMany("status")
-                        .HasForeignKey("LogDeRaspagemRequisicaoid");
+                        .HasForeignKey("LogDeRaspagemRequisicaoID");
 
                     b.Navigation("LogDeRaspagemRequisicao");
                 });

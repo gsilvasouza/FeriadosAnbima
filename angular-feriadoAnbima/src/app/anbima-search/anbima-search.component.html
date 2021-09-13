@@ -1,0 +1,49 @@
+<header>
+    <div class="header">
+      <img src="../../assets/img/LogoIndra.png"  alt=" Logo Indra">
+    </div>
+</header>
+<body>
+  <div class="info-titulo" >
+    <p >PESQUISA DE FERIADOS  BANCARIOS  POR ANO  NO SITE DA ANBIMA</p>
+  </div>
+  <div class="info-aviso">
+    <p>ANOS VALIDOS: 2001 a 2078</p>
+  </div>
+  <form class="row g-5">
+    <div class="row mb-6 form-group">
+      <label for="ano" class="col-sm-4 col-form-label">DIGITE O ANO: </label>
+      <div class="col-sm-4">
+        <input type="string" class="form-control" id="ano" [(ngModel)] = "buscaFeriado.ano" name="ano">
+      </div>
+      <div class="col-auto">
+        <button type="submit" id="btnPesquisa" class="btn  mb-3 button" (click) = "pesquisaAno()">BUSCAR</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Feriados List table, fica oculta enquanto não existir feriado-->
+  <div *ngIf = "Feriados.length !== 0">
+    <h3 class="mb-3 text-center titulo">Feriados do ano de {{buscaFeriado.ano}}</h3>
+    <div class="col-md-12">
+    <table class="table table-bordered"> 
+      <thead> 
+        <tr> 
+          <th scope="col" class="coluna">Nome</th> 
+          <th scope="col" class="coluna" >Dia da semana</th> 
+          <th scope="col" class="coluna">Data</th> 
+          <th scope="col" class="coluna">Ano</th> 
+        </tr> 
+      </thead> 
+      <tbody> 
+        <tr *ngFor="let feriado of Feriados"> 
+          <td class="coluna">{{feriado.nome}}</td> 
+          <td class="coluna">{{feriado.diaDaSemana}}</td> 
+          <td class="coluna">{{feriado.data | dataFormata}}</td> 
+          <td class="coluna">{{feriado.ano}}</td> 
+        </tr> 
+      </tbody> 
+    </table> 
+    </div>
+  </div>
+</body>

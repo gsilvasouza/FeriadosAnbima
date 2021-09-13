@@ -44,6 +44,14 @@ namespace API_FeriadoAnbima.Model
             this.ano = ano;
         }
 
+        public Feriado(string nome, string diaDaSemana, int ano, LogDeRaspagemRequisicao log)
+        {
+            this.nome = nome;
+            this.diaDaSemana = diaDaSemana;
+            this.ano = ano;
+            this.LogDeRaspagemRequisicao = log;
+        }
+
         public Feriado() { }
 
         public ValidationResult EhValido()

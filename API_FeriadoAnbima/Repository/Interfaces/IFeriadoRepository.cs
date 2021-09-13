@@ -10,5 +10,6 @@ namespace API_FeriadoAnbima.Repository
     public interface IFeriadoRepository
     {
         Task<Feriado> CreateFeriado(FeriadoDto feriadodto, LogDeRaspagemRequisicao log);
+        Task<IEnumerable<Feriado>> BuscaDeFeriadosPorAno(string ano);
     }
 }

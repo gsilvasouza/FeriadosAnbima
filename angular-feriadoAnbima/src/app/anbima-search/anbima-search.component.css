@@ -1,0 +1,85 @@
+
+.header{
+  width: auto;
+  height: 76px;
+  margin-bottom: 20px;
+  background-color: #02657C;
+}
+
+img{
+  width: auto;
+  height: auto;
+  margin-top: 23px;
+  margin-left: 35px;
+}
+
+.info-titulo{
+  height: 56px;
+  width: auto;
+  margin-top: 30px;
+}
+
+.info-titulo p {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: 0.3em;
+}
+
+.info-aviso{
+  height: 56px;
+  width: auto;
+  border-radius: 0px;
+  margin-top: -20px;
+}
+
+.info-aviso p {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: 0.3em;
+}
+form{
+  margin-top: 50px;
+  text-align: end;
+}
+
+label{
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.3em;
+}
+
+.button{
+  background-color: #02657C;
+  color: white;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0.3em;
+}
+
+.titulo{
+  text-align: center;
+  font-family: Roboto;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: 0.3em;
+}
+
+.coluna{
+  font-family: Roboto;
+  font-size: 20px;
+}

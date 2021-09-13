@@ -28,7 +28,7 @@ namespace API_FeriadoAnbima
             //Registrando o automapper na startup
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper(); //registrando e criando o automapper
             services.AddSingleton(mapper);
-
+            
             services.AddScoped<ILogDeRaspagemRequisicaoRepository, LogDeRaspagemRequisicaoRepository>();
             services.AddScoped<IFeriadoRepository, FeriadoRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();

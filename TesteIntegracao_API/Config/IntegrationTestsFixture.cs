@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TesteIntegracao_API.Config
 {
-    [CollectionDefinition(nameof(IntegrationApiTestsFixtureCollection))]
+    [CollectionDefinition(nameof(IntegrationApiTestsFixtureCollection))] //Collection fixture
     public class IntegrationApiTestsFixtureCollection : ICollectionFixture<IntegrationTestsFixture<StartupApiTests>>{ }
     public class IntegrationTestsFixture<TStartup> : IDisposable where TStartup : class
     {

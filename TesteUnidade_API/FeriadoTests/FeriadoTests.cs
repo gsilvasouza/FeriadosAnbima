@@ -25,7 +25,6 @@ namespace TesteUnidade_API.FeriadoTests
             //Assert 
             Assert.True(result.IsValid);
             Assert.Empty(result.Errors);
-            
         }
 
         [Fact(DisplayName = "Feriado, nome invalido")]
@@ -76,13 +75,13 @@ namespace TesteUnidade_API.FeriadoTests
             Assert.Equal("Por favor, certifique-se de ter inserido o dia da semana", result.ToString());
         }
 
-        [Fact(DisplayName = "Feriado, dia da semana invalido")]
+        [Fact(DisplayName = "Feriado, data invalido")]
         [Trait("Categoria", "Feriado Tests")]
         //int id, string nome, string diaDaSemana, DateTime data, int ano
         public void Feriado_NovoFeriado_DataInvalido()
         {
             LogDeRaspagemRequisicao log = new LogDeRaspagemRequisicao(DateTime.UtcNow, true, 2020, "Requisição de busca dos feriado do ano: 2020 no site Anbima", "https://www.anbima.com.br/feriados/fer_nacionais/2020.asp");
-            var feriado = new Feriado("Natal", "sexta-feira", DateTime.Now, 2020, log);
+            var feriado = new Feriado("Natal", "sexta-feira", 2020, log);
 
             //Act
             var result = feriado.EhValido();

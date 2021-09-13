@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace API_FeriadoAnbima.Scrapping
 {
@@ -38,12 +39,7 @@ namespace API_FeriadoAnbima.Scrapping
                 await _statusRepository.CreateStatus(statusXpath);
 
                 var html = @$"https://www.anbima.com.br/feriados/fer_nacionais/{ano}.asp";
-                HtmlWeb web = new HtmlWeb
-                {
-                    AutoDetectEncoding = false,
-                    OverrideEncoding = Encoding.GetEncoding("UTF-8"),
-                };
-
+                HtmlWeb web = new HtmlWeb();
                 Status statusCarregamento = new Status($"Fazendo o carregamento da pagina Anbima {html}", "Scrapping", log); //Criação do objeto status
                 await _statusRepository.CreateStatus(statusCarregamento); //Salvando o objeto status
 
@@ -70,13 +66,11 @@ namespace API_FeriadoAnbima.Scrapping
                     }
                     if (contador == 2)
                     {
-                        feriado.diaDaSemana = nodeLoop.InnerText;
-                        Console.WriteLine();
+                        feriado.diaDaSemana = HttpUtility.HtmlDecode(nodeLoop.InnerText);
                     }
                     if (contador == 3)
                     {
-                        feriado.nome = nodeLoop.InnerText;
-                        //convertString(nodeLoop.InnerHtml);
+                        feriado.nome = HttpUtility.HtmlDecode(nodeLoop.InnerText);
                         feriado.ano = Int32.Parse(ano);
                         feriados.Add(feriado);
                         await _feriadoRepository.CreateFeriado(feriado, log);
@@ -87,38 +81,12 @@ namespace API_FeriadoAnbima.Scrapping
 
                 Status statusRetornoScrapping = new Status($"Criação com sucesso da lista FeriadoDto dos valores resgatado e retorno da função", "Scrapping", log); //Criação do objeto status
                 await _statusRepository.CreateStatus(statusRetornoScrapping); //Salvando o objeto status
-
                 return feriados;
             }
             catch(Exception ex)
             {
-                throw new Exception(ex.ToString());
-            }
-            
-        }
-
-        private void convertString(string valor)
-        {
-            string unicodeString = valor;
-
-            // Create two different encodings.
-            Encoding ascii = Encoding.ASCII;
-            Encoding unicode = Encoding.Unicode;
-
-            // Convert the string into a byte array.
-            byte[] unicodeBytes = unicode.GetBytes(unicodeString);
-
-            // Perform the conversion from one encoding to the other.
-            byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
-
-            // Convert the new byte[] into a char[] and then into a string.
-            char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
-            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0); 
-            string asciiString = new string(asciiChars);
-
-            // Display the strings created before and after the conversion.
-            Console.WriteLine("Original string: {0}", unicodeString);
-            Console.WriteLine("Ascii converted string: {0}", asciiString);
+                throw new Exception("Erro durante o scrapping");
+            }   
         }
     }
 

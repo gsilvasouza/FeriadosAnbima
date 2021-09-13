@@ -37,7 +37,8 @@ namespace API_FeriadoAnbima
             //Registrando o automapper na startup
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper(); //registrando e criando o automapper
             services.AddSingleton(mapper);
-
+            MappingList mappingList = new MappingList(mapper);
+            services.AddSingleton(mappingList);
             services.AddScoped<ILogDeRaspagemRequisicaoRepository, LogDeRaspagemRequisicaoRepository>();
             services.AddScoped<IFeriadoRepository, FeriadoRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
@@ -46,6 +47,13 @@ namespace API_FeriadoAnbima
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_FeriadoAnbima", Version = "v1" });
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
             });
         }
 
@@ -60,15 +68,20 @@ namespace API_FeriadoAnbima
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            
+            
+            //app.UseCors("Cors");
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

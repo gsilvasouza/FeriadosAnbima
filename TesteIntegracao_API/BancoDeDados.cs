@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using API_FeriadoAnbima.Model;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using Xunit;
 
 namespace TesteIntegracao_API
 {
-    public class BancoDeDabosTest
+    public class BancoDeDados
     {
         [Fact(DisplayName = "Busca de feriados ano")]
         [Trait("Categoria", "Integração Banco de dados")]
