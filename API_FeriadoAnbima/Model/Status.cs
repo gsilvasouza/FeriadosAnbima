@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace API_FeriadoAnbima.Model
 {
+    [Table("TB_Status")]
     public class Status
     {
         [Key]

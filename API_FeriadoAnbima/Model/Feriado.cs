@@ -7,6 +7,7 @@ using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace API_FeriadoAnbima.Model
 {
+    [Table("TB_Feriado")]
     public class Feriado
     {
         [Key]
