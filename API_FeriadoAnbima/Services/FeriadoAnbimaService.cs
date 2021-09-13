@@ -44,7 +44,7 @@ namespace API_FeriadoAnbima.Services
                 await _statusRepository.CreateStatus(status); //Salvando o status no banco de dados
                 //TODO: Metod para busca de ano
                 List<Feriado> feriadosExistente = (List<Feriado>) await _feriadoRepository.BuscaDeFeriadosPorAno(ano);
-                if (feriadosExistente.Equals(null))
+                if (feriadosExistente.Count() == 0)
                 {
                     feriados = await scrappingAnbima.SearchHoliday(log, ano);
                 }
