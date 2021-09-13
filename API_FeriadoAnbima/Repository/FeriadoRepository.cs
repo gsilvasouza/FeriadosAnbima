@@ -39,10 +39,9 @@ namespace API_FeriadoAnbima.Repository
 
         public async Task<IEnumerable<Feriado>> BuscaDeFeriadosPorAno(string ano)
         {
-
             int _ano = Int32.Parse(ano);
             IEnumerable<Feriado> feriados = await _db.feriado.Where(f => f.ano == _ano).ToListAsync();
-            return feriados.Count() > 0 ? feriados : null;
+            return feriados;
         }
     }
 }
